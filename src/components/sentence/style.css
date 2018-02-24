@@ -1,0 +1,34 @@
+@font-face {
+  font-family: myFont;
+  src: url('./font.ttf');
+}
+
+.Sentence .background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+}
+
+.Sentence .container {
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  background: rgba(0, 0, 0, .5);
+  color: #fff;
+  font-family: myFont, monospace;
+  font-size: 35px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Sentence .container .content {
+  margin-right: 50px;
+}
+
+.Sentence .container .tail {
+  text-align: right;
+  font-size: 20px;
+  margin-top: 20px;
+}
