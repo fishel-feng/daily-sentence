@@ -3,6 +3,10 @@
   src: url('./font.ttf');
 }
 
+.Sentence {
+  font-family: myFont, monospace;
+}
+
 .Sentence .background {
   width: 100%;
   height: 100%;
@@ -10,25 +14,43 @@
   z-index: -1;
 }
 
-.Sentence .container {
+.Sentence .sentence-container {
   position: absolute;
   top: 100px;
-  left: 200px;
-  background: rgba(0, 0, 0, .5);
+  left: 150px;
+  background: rgba(0, 0, 0, .3);
   color: #fff;
-  font-family: myFont, monospace;
   font-size: 35px;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  margin-right: 150px;
 }
 
-.Sentence .container .content {
+.Sentence .sentence-container .content {
   margin-right: 50px;
 }
 
-.Sentence .container .tail {
+.Sentence .sentence-container .tail {
   text-align: right;
   font-size: 20px;
   margin-top: 20px;
+}
+
+.Sentence .sentence-container .tail:hover {
+  color: coral;
+  cursor: pointer;
+}
+
+.Sentence .poetry-container {
+  background: rgba(0, 0, 0, .3);
+  color: #fff;
+  position: absolute;
+  top: 250px;
+  left: 150px;
+  padding: 20px;
+  margin-right: 150px;
+  font-size: 20px;
+  max-height: 400px;
+  overflow: auto;
 }

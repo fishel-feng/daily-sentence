@@ -8,12 +8,21 @@ export default class Sentence extends Component {
     this.state = {
       sentenceContent: '',
       sentencePoetryName: '',
-      sentenceAuthorName: ''
+      sentenceAuthorName: '',
+      isPoetryShown: false,
+      poetryContent: ''
     };
+    this.showPoetry = this.showPoetry.bind(this);
   }
 
   componentDidMount() {
     this.getData();
+  }
+
+  showPoetry() {
+    this.setState({
+      isPoetryShown: !this.state.isPoetryShown
+    });
   }
 
   getData() {
@@ -23,6 +32,9 @@ export default class Sentence extends Component {
                        sentenceContent
                        sentencePoetryName
                        sentenceAuthorName
+                       sentencePoetry{
+                         content
+                       }
                      }
                    }`;
     fetch('/graphql?query=' + query).then(res => res.json()).then(res => {
@@ -30,22 +42,29 @@ export default class Sentence extends Component {
         this.setState({
           sentenceContent: res.data.sentence.sentenceContent,
           sentencePoetryName: res.data.sentence.sentencePoetryName,
-          sentenceAuthorName: res.data.sentence.sentenceAuthorName
-        })
+          sentenceAuthorName: res.data.sentence.sentenceAuthorName,
+          poetryContent: res.data.sentence.sentencePoetry ? res.data.sentence.sentencePoetry.content : '暂无内容'
+        });
       } else {
-        this.getData()
+        this.getData();
       }
-    })
+    });
   }
 
   render() {
     return (
       <div className="Sentence">
         <img className="background" src="https://picsum.photos/1440/900/?random" alt=""/>
-        <div className="container">
+        <div className="sentence-container">
           <span className="content">{this.state.sentenceContent}</span>
-          <span className="tail">--{this.state.sentencePoetryName} {this.state.sentenceAuthorName}</span>
+          <span className="tail" onClick={this.showPoetry}>--{this.state.sentencePoetryName} {this.state.sentenceAuthorName}</span>
         </div>
+        {
+          this.state.isPoetryShown ?
+            <div className="poetry-container">
+              <span className="poetry">{this.state.poetryContent}</span>
+            </div> : null
+        }
       </div>
     );
   }
