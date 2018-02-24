@@ -1,12 +1,3 @@
-@font-face {
-  font-family: myFont;
-  src: url('./font.ttf');
-}
-
-.Sentence {
-  font-family: myFont, monospace;
-}
-
 .Sentence .background {
   width: 100%;
   height: 100%;
